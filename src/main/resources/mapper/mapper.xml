@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.dao.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.cc.bean.Student">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="num" jdbcType="VARCHAR" property="num" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="gender" jdbcType="VARCHAR" property="gender" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+    </resultMap>
+    <insert id="insert" parameterType="com.cc.bean.Student">
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into student ( num, name,
+        gender, age)
+        values ( #{num,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{gender,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})
+    </insert>
+
+    <update id="update">
+    update student set name = #{name},gender = #{gender},age= #{age}
+    where num = #{num}
+  </update>
+
+    <select id="selectAll" resultType="com.cc.bean.Student">
+        select * from student
+    </select>
+</mapper>
