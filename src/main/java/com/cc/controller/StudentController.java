@@ -25,6 +25,7 @@ public class StudentController {
         return students;
     }
 
+    // 20220516
     @GetMapping( path = "/getStudent")
     public String getList(@Param("num") String num){
         Student students = studentService.getStudent(num);
